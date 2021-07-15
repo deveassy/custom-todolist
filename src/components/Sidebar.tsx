@@ -1,11 +1,10 @@
 import React from "react";
+import SearchInput from "./SearchInput";
 
 export default function Sidebar() {
   return (
     <div>
-      {/* 검색 영역 */}
-      <div></div>
-      {/* 메뉴 영역 */}
+      <SearchInput />
       <div>
         <ul>
           <li>진행상황</li>
