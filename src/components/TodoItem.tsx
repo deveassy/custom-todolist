@@ -1,9 +1,15 @@
 import React from "react";
+import { Todo } from "../modules/todos";
 
-function TodoItem() {
+interface ITodoItem {
+  todo: Todo;
+}
+
+function TodoItem(props: ITodoItem) {
+  const { todo } = props;
   return (
-    <div>
-      <li>할일 1</li>
+    <div key={todo.id}>
+      <li>할일 {todo.id}</li>
     </div>
   );
 }

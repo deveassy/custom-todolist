@@ -1,13 +1,15 @@
 import React from "react";
 import TodoItem from "./TodoItem";
+import { useSelector } from "react-redux";
+import { RootState } from "../modules";
 
 function TodoList() {
-  const datas = ["1", "2", "3"];
+  const todos = useSelector((state: RootState) => state.todos.todos);
   return (
     <div>
       <ul>
-        {datas.map((data) => (
-          <TodoItem />
+        {todos.map((todo) => (
+          <TodoItem todo={todo} />
         ))}
       </ul>
     </div>
