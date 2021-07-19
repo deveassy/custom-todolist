@@ -1,7 +1,7 @@
 import React from "react";
 import SearchInput from "./SearchInput";
 
-export default function Sidebar() {
+function Sidebar() {
   return (
     <div>
       <SearchInput />
@@ -15,3 +15,5 @@ export default function Sidebar() {
     </div>
   );
 }
+
+export default Sidebar;
