@@ -1,5 +1,4 @@
-import MainScreen from "./MainScreen";
-import SearchScreen from "./SearchScreen";
+import RootScreen from "./RootScreen";
 import NotFound from "./NotFound";
 
-export { MainScreen, SearchScreen, NotFound };
+export { RootScreen, NotFound };

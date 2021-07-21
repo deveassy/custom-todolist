@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import todos from "./todos";
+import menus from "./menus";
+import collections from "./collections";
 
 const rootReducer = combineReducers({
-  todos,
+  menus,
+  collections,
 });
 
 export default rootReducer;
