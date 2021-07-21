@@ -1,0 +1,30 @@
+{
+  "collection": {
+    "id": "id-custom",
+    "name": "custom-collection",
+    "order": 1,
+    "data": [
+      {
+        "id": "c01",
+        "title": "title-01",
+        "createdAt": "2021-07-20...",
+        "done": false,
+        "flagged": false
+      },
+      {
+        "id": "c02",
+        "title": "title-01",
+        "createdAt": "2021-07-20...",
+        "done": false,
+        "flagged": false
+      },
+      {
+        "id": "c03",
+        "title": "title-01",
+        "createdAt": "2021-07-20...",
+        "done": false,
+        "flagged": false
+      }
+    ]
+  }
+}

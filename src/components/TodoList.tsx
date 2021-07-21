@@ -9,7 +9,7 @@ function TodoList() {
     <div>
       <ul>
         {todos.map((todo) => (
-          <TodoItem todo={todo} />
+          <TodoItem todo={todo} onToggle={onToggle} />
         ))}
       </ul>
     </div>

@@ -1,6 +1,6 @@
 export const GET_TODOS = "todos/GET_TODOS" as const;
 
-const getTodos = () => ({
+export const getTodos = () => ({
   type: GET_TODOS,
 });
 
@@ -41,7 +41,6 @@ export default function todoReducer(
     case GET_TODOS:
       return state;
     default:
-      // throw new Error("존재하지 않는 타입의 dispatch");
       return state;
   }
 }
