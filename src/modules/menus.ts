@@ -1,45 +1,23 @@
-export const GET_TODOS = "todos/GET_TODOS" as const;
-
-export const getTodos = () => ({
-  type: GET_TODOS,
+export const updateMenuIndex = (index: number) => ({
+  type: "menus/UPDATE_INDEX",
+  payload: index,
 });
 
 const initialState = {
-  todos: [
-    {
-      id: "0",
-      title: "할일 1",
-      done: false,
-    },
-    {
-      id: "1",
-      title: "할일 2",
-      done: false,
-    },
-    {
-      id: "2",
-      title: "할일 3",
-      done: false,
-    },
-  ] as Todo[],
+  currentIndex: 0,
 };
 
-export type Todo = {
-  id: string;
-  title: string;
-  done: boolean;
-};
-type TodoState = typeof initialState;
+type MenuState = typeof initialState;
 
-type TodoAction = ReturnType<typeof getTodos>;
+type MenuAction = ReturnType<typeof updateMenuIndex>;
 
 export default function todoReducer(
-  state: TodoState = initialState,
-  action: TodoAction
-): TodoState {
+  state: MenuState = initialState,
+  action: MenuAction
+) {
   switch (action.type) {
-    case GET_TODOS:
-      return state;
+    case "menus/UPDATE_INDEX":
+      return { currentIndex: action.payload };
     default:
       return state;
   }
