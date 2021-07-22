@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { createId } from "../../utils/reducers";
+import { createId } from "../utils/reducers";
 
 type FormProps = {
   collection: Collection;

@@ -1,7 +1,7 @@
 type Todo = {
   id: string;
   title: string;
-  createdAt: Date;
+  createdAt: string;
   done: boolean;
   flagged: boolean;
 };

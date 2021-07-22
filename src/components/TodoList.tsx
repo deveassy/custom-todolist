@@ -1,8 +1,8 @@
 import React from "react";
-import TodoItem from "../../components/TodoItem";
+import TodoItem from "./TodoItem";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../modules";
-import { toggleCompleteTodo } from "../../modules/collections";
+import { RootState } from "../modules";
+import { toggleCompleteTodo } from "../modules/collections";
 
 type IProps = {
   collection: Collection;

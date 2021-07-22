@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from "react";
-import TodoList from "./TodoList";
-import TodoForm from "./TodoForm";
+import TodoList from "../../components/TodoList";
+import TodoForm from "../../components/TodoForm";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../modules";
