@@ -53,11 +53,15 @@ function LeftPane() {
     else setCollectionName("");
   }, [visible]);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+  };
+
   return (
     <LeftContainer>
       {/* 검색 input창 */}
       <section>
-        <input placeholder="검색" />
+        <input placeholder="검색" onChange={handleChange} />
       </section>
       <div
         style={{
@@ -69,14 +73,14 @@ function LeftPane() {
       />
       {/* collection List, 추가 form */}
       <section>
-        {collections.map((collection) => {
+        {collections.map((collection) => (
           <div
             key={collection.id}
             onClick={() => handleCollectionItemClick(collection.order)}
           >
             {collection.name}
-          </div>;
-        })}
+          </div>
+        ))}
         <form onSubmit={handleSubmit}>
           <input
             ref={inputRef}
@@ -102,7 +106,6 @@ const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: yellow;
 `;
 
 const AddBtnSection = styled.button`
