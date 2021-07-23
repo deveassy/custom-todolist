@@ -23,7 +23,7 @@ function TodoForm({ collection, onSubmit }: FormProps) {
       title: inputValue,
       done: false,
       flagged: false,
-      createdAt: new Date(),
+      createdAt: new Date().toString(),
     };
     onSubmit(newTodo);
     setInputValue("");
@@ -47,6 +47,7 @@ function TodoForm({ collection, onSubmit }: FormProps) {
         onChange={handleChange}
         onBlur={handleBlur}
         ref={inputRef}
+        placeholder="I have to..."
       />
     </form>
   );
