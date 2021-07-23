@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { createId } from "../utils/reducers";
+import React, { useState, useRef, useEffect } from "react";
+import { createId } from "../../utils/reducers";
 
 type FormProps = {
   collection: Collection;
@@ -9,10 +9,9 @@ type FormProps = {
 function TodoForm({ collection, onSubmit }: FormProps) {
   const [inputValue, setInputValue] = useState("");
 
-  const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
@@ -29,22 +28,27 @@ function TodoForm({ collection, onSubmit }: FormProps) {
     setInputValue("");
   };
 
+  // 포커스가 input창 밖으로 벗어나도 submit 발동
   const handleBlur = () => {
     if (inputValue) handleSubmit();
   };
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit();
       }}
-      ref={formRef}
     >
       <input
         type="text"
         name="todo-input"
         value={inputValue}
-        onChange={handleChange}
+        onChange={handleInputChange}
         onBlur={handleBlur}
         ref={inputRef}
         placeholder="I have to..."

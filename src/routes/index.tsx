@@ -1,12 +1,16 @@
 import React from "react";
-import { RootScreen, NotFound } from "../screens";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import RootScreen from "../screens/RootScreen";
+import NotFound from "../screens/NotFound";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+
+const DEFAULT_INDEX = 0;
 
 function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={RootScreen} />
+        <Redirect exact from="/" to={`/todo/${DEFAULT_INDEX}`} />
+        <Route path="/todo/:cid" component={RootScreen} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>

@@ -3,7 +3,7 @@ import TodoList from "../TodoList";
 import { render, RenderResult } from "@testing-library/react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import rootReducer from "../../modules";
+import rootReducer from "../../../modules";
 
 // 1. props로 넘어온 collection이 적절히 랜더링 되는가
 // 2. onClick 함수가 제대로 호출이 되는가
@@ -38,11 +38,11 @@ describe("<TodoList />", () => {
     ],
   };
   const getRenderResult = (): RenderResult => {
-    return render(<TodoList collection={sampleTodo} />);
+    return render(<TodoList items={sampleTodo} />);
   };
   it("should be shows the default state", () => {
     const { getByText } = renderWithProviders(
-      <TodoList collection={sampleTodo} />,
+      <TodoList items={sampleTodo} />,
       sampleTodo
     );
     expect(getByText(sampleTodo.data[0].title));

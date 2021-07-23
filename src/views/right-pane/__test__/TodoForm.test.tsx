@@ -1,7 +1,7 @@
 import React from "react";
 import TodoForm from "../TodoForm";
 import { render, RenderResult, fireEvent } from "@testing-library/react";
-import mock from "../../mocks/collection.json";
+import mock from "../../../mocks/collection.json";
 
 // 1. 1개의 input이 있는가
 // 2. input의 change를 감지하는가

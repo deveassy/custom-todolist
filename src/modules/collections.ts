@@ -4,9 +4,9 @@ const ADD_TODO = "collection/ADD_TODO" as const;
 const ADD_COLLECTION = "collection/ADD_COLLECTION" as const;
 const TOGGLE_COMPLETE_TODO = "collection/TOGGLE_COMPLETE_TODO" as const;
 
-export const addTodo = (targetCollectionIdx: number, todo: Todo) => ({
+export const addTodo = (targetCollectionId: number, todo: Todo) => ({
   type: ADD_TODO,
-  payload: { targetCollectionIdx, todo },
+  payload: { targetCollectionId, todo },
 });
 
 export const addCollection = (collection: Collection) => ({
@@ -14,9 +14,9 @@ export const addCollection = (collection: Collection) => ({
   payload: { collection },
 });
 
-export const toggleCompleteTodo = (collectionIdx: number, todoId: string) => ({
+export const toggleCompleteTodo = (collectionId: string, todoId: string) => ({
   type: TOGGLE_COMPLETE_TODO,
-  payload: { collectionIdx, todoId },
+  payload: { collectionId, todoId },
 });
 
 /**
@@ -49,8 +49,8 @@ export default function collectionReducer(
   const newState = state.slice();
   switch (action.type) {
     case ADD_TODO:
-      const { targetCollectionIdx, todo } = action.payload;
-      newState[targetCollectionIdx].data.push(todo);
+      const { targetCollectionId, todo } = action.payload;
+      newState[targetCollectionId].data.push(todo);
       return newState;
 
     case ADD_COLLECTION:
@@ -59,8 +59,13 @@ export default function collectionReducer(
       return newState;
 
     case TOGGLE_COMPLETE_TODO:
-      const { collectionIdx, todoId } = action.payload;
-      newState[collectionIdx].data = newState[collectionIdx].data.map((todo) =>
+      const { collectionId, todoId } = action.payload;
+      // 컬렉션 ID를 통해 현재 변경해야 하는 컬렉션 정보를 확인
+      const idx = newState.findIndex(
+        (collection) => collection.id === collectionId
+      );
+      // done 업데이트
+      newState[idx].data = newState[idx].data.map((todo) =>
         todo.id === todoId ? { ...todo, done: !todo.done } : todo
       );
       return newState;
