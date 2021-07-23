@@ -24,6 +24,5 @@ const RootContainer = styled.div`
 
 const Divider = styled.div`
   height: 100vh;
-  width: 2;
-  background-color: #ddd;
+  border: 2px solid #ddd;
 `;

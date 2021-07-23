@@ -9,6 +9,7 @@ import CollectionForm from "./CollectionForm";
 
 function LeftPane() {
   const [visible, setVisible] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -37,15 +38,20 @@ function LeftPane() {
     if (visible) inputRef.current?.focus();
   }, [visible]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-  };
+  const handleChange = () => {};
 
   return (
     <LeftContainer>
       {/* 검색 input창 */}
       <section>
-        <input placeholder="검색" onChange={handleChange} />
+        <input
+          placeholder="검색"
+          value={searchValue}
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+            handleChange();
+          }}
+        />
       </section>
       <hr style={{ backgroundColor: "#ddd", margin: "16px 0" }} />
       {/* collection List, 추가 form */}
