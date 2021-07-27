@@ -1,9 +1,9 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import { createId } from "../../utils/reducers";
 
 type CFormProps = {
   visible: boolean;
-  onSubmit: (newCollection: Collection) => void;
+  onSubmit: (newCollection: ICollection) => void;
 };
 
 const CollectionForm = forwardRef<HTMLInputElement, CFormProps>(
@@ -17,7 +17,7 @@ const CollectionForm = forwardRef<HTMLInputElement, CFormProps>(
 
     const handleSubmit = () => {
       if (!inputValue) return;
-      const newCollection = {
+      const newCollection: ICollection = {
         id: createId("custom"),
         name: inputValue,
         order: 0,
@@ -27,9 +27,17 @@ const CollectionForm = forwardRef<HTMLInputElement, CFormProps>(
       setInputValue("");
     };
 
+    /**
+     * 폼에서 벗어나는 경우에도 submit 함수 작동
+     */
     const handleBlur = () => {
       handleSubmit();
     };
+
+    useEffect(() => {
+      if (visible) setInputValue("New List");
+    }, [visible]);
+
     return (
       <form
         onSubmit={(e) => {

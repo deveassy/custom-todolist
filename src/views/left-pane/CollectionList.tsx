@@ -2,7 +2,7 @@ import React from "react";
 import CollectionItem from "../../components/CollectionItem";
 
 type CListProps = {
-  items: Collection[];
+  items: ICollection[];
 };
 
 function CollectionList({ items }: CListProps) {

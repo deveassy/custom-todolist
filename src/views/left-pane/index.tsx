@@ -3,18 +3,20 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../modules/index";
 import { addCollection } from "../../modules/collections";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import CollectionList from "./CollectionList";
 import CollectionForm from "./CollectionForm";
+import SearchInput from "./SearchInput";
 
 function LeftPane() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { path } = useRouteMatch();
+
   const [visible, setVisible] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const dispatch = useDispatch();
-  const history = useHistory();
   const collections = useSelector((state: RootState) => state.collections);
 
   /**
@@ -28,33 +30,25 @@ function LeftPane() {
    * 컬렉션 생성함수
    * @param newCollection 생성을 위해 전달된 컬렉션 정보
    */
-  const handleSubmit = (newCollection: Collection) => {
+  const handleSubmit = (newCollection: ICollection) => {
     dispatch(addCollection(newCollection));
     setVisible(false);
-    history.push(`/todo/${collections.length}`);
+    history.push(`${path}/${collections.length}`);
   };
 
+  /**
+   * 폼 노출에 따른 인풋창 포커싱
+   */
   useEffect(() => {
     if (visible) inputRef.current?.focus();
   }, [visible]);
 
-  const handleChange = () => {};
-
   return (
     <LeftContainer>
-      {/* 검색 input창 */}
       <section>
-        <input
-          placeholder="검색"
-          value={searchValue}
-          onChange={(e) => {
-            setSearchValue(e.target.value);
-            handleChange();
-          }}
-        />
+        <SearchInput />
       </section>
       <hr style={{ backgroundColor: "#ddd", margin: "16px 0" }} />
-      {/* collection List, 추가 form */}
       <section>
         <CollectionList items={collections} />
         <CollectionForm
@@ -63,7 +57,6 @@ function LeftPane() {
           onSubmit={handleSubmit}
         />
       </section>
-      {/* collection 추가 버튼 */}
       <AddBtnSection>
         <button onClick={handleVisibleForm}>목록 추가하기</button>
       </AddBtnSection>
