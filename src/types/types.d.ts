@@ -1,4 +1,4 @@
-type Todo = {
+type ITodo = {
   id: string;
   title: string;
   createdAt: string;
@@ -6,7 +6,7 @@ type Todo = {
   flagged: boolean;
 };
 
-type Collection = {
+type ICollection = {
   id: string;
   name: string;
   order: number;

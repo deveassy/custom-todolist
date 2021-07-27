@@ -4,12 +4,12 @@ const ADD_TODO = "collection/ADD_TODO" as const;
 const ADD_COLLECTION = "collection/ADD_COLLECTION" as const;
 const TOGGLE_COMPLETE_TODO = "collection/TOGGLE_COMPLETE_TODO" as const;
 
-export const addTodo = (targetCollectionId: number, todo: Todo) => ({
+export const addTodo = (targetCollectionId: number, todo: ITodo) => ({
   type: ADD_TODO,
   payload: { targetCollectionId, todo },
 });
 
-export const addCollection = (collection: Collection) => ({
+export const addCollection = (collection: ICollection) => ({
   type: ADD_COLLECTION,
   payload: { collection },
 });
@@ -27,7 +27,7 @@ const initialState = [
     id: createId("default"),
     name: "default",
     order: 0,
-    data: [] as Todo[],
+    data: [] as ITodo[],
   },
 ];
 
