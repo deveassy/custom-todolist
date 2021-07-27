@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { toggleCompleteTodo } from "../../modules/collections";
 
 type IProps = {
-  items: Collection;
+  items: ICollection;
 };
 
 function TodoList({ items }: IProps) {

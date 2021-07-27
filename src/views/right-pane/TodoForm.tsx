@@ -1,31 +1,26 @@
-import React, { useState, useRef, useEffect } from "react";
-import { createId } from "../../utils/reducers";
+import React, { useRef, useEffect } from "react";
+import styled from "styled-components";
+import { useInputState } from "../../hooks/useInputState";
+import { Todo } from "../../models";
 
 type FormProps = {
-  collection: Collection;
-  onSubmit: (todo: Todo) => void;
+  // collection: ICollection;
+  onSubmit: (todo: ITodo) => void;
 };
 
-function TodoForm({ collection, onSubmit }: FormProps) {
-  const [inputValue, setInputValue] = useState("");
+function TodoForm({ onSubmit }: FormProps) {
+  const [inputValue, setInputValue, clear] = useInputState({ todoTitle: "" });
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
   const handleSubmit = () => {
     if (!inputValue) return;
-    const newTodo: Todo = {
-      id: createId(collection.id),
-      title: inputValue,
-      done: false,
-      flagged: false,
-      createdAt: new Date().toString(),
-    };
+
+    // 새로운 투두 생성
+    const newTodo = new Todo(inputValue.todoTitle).getTodo;
     onSubmit(newTodo);
-    setInputValue("");
+    // 초기화
+    clear("todoTitle");
   };
 
   // 포커스가 input창 밖으로 벗어나도 submit 발동
@@ -33,6 +28,9 @@ function TodoForm({ collection, onSubmit }: FormProps) {
     if (inputValue) handleSubmit();
   };
 
+  /**
+   * 마운트 시 Input창 포커싱
+   */
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
@@ -44,11 +42,11 @@ function TodoForm({ collection, onSubmit }: FormProps) {
         handleSubmit();
       }}
     >
-      <input
+      <TodoInput
         type="text"
-        name="todo-input"
-        value={inputValue}
-        onChange={handleInputChange}
+        name="todoTitle"
+        value={inputValue.todoTitle}
+        onChange={setInputValue}
         onBlur={handleBlur}
         ref={inputRef}
         placeholder="I have to..."
@@ -58,3 +56,5 @@ function TodoForm({ collection, onSubmit }: FormProps) {
 }
 
 export default TodoForm;
+
+const TodoInput = styled.input``;
