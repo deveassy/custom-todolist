@@ -1,16 +1,16 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useRouteMatch } from "react-router-dom";
 
 type CItemProps = {
-  item: Collection;
+  item: ICollection;
   index: number;
 };
-
 function CollectionItem({ item, index }: CItemProps) {
+  const { path } = useRouteMatch();
   return (
     <li>
       <NavLink
-        to={`/todo/${index}`}
+        to={`${path}/collection/${index}`}
         activeStyle={{ fontWeight: "bold", color: "blue" }}
       >
         {item.name}

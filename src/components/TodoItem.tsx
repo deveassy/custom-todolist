@@ -1,7 +1,7 @@
 import React from "react";
 
 type ItemProps = {
-  todo: Todo;
+  todo: ITodo;
   onClick: (id: string) => void;
 };
 

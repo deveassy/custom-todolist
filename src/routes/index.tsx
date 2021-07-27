@@ -1,16 +1,14 @@
 import React from "react";
-import RootScreen from "../screens/RootScreen";
-import NotFound from "../screens/NotFound";
+import TodoRoute from "./TodoRoute";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-
-const DEFAULT_INDEX = 0;
 
 function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Redirect exact from="/" to={`/todo/${DEFAULT_INDEX}`} />
-        <Route path="/todo/:cid" component={RootScreen} />
+        <Redirect exact from="/" to={`/main`} />
+        {/* 추후 유저관리를 위한 라우터 분리 */}
+        <Route path="/main" component={TodoRoute} />
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
@@ -18,3 +16,5 @@ function Routes() {
 }
 
 export default Routes;
+
+const NotFound = () => <p>No Page</p>;
