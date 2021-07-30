@@ -17,7 +17,10 @@ function SearchInput() {
    * 키워드 입력 시 검색 UI로 전환
    */
   useEffect(() => {
-    if (inputValue.keyword.length) history.push(`${path}/search`);
+    // if (inputValue.keyword.length) history.push(`${path}/search`);
+    history.replace(`${path}/search`, {
+      keyword: inputValue.keyword,
+    });
   }, [history, inputValue.keyword, path]);
   return (
     <div>

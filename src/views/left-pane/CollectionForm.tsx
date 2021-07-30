@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useState } from "react";
-import { createId } from "../../utils/reducers";
+import { createId } from "../../utils/string";
 
 type CFormProps = {
   visible: boolean;
@@ -35,7 +35,7 @@ const CollectionForm = forwardRef<HTMLInputElement, CFormProps>(
     };
 
     useEffect(() => {
-      if (visible) setInputValue("New List");
+      if (visible) setInputValue("");
     }, [visible]);
 
     return (

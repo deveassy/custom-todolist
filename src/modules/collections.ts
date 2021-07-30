@@ -1,4 +1,4 @@
-import { createId } from "../utils/reducers";
+import { createId } from "../utils/string";
 
 const ADD_TODO = "collection/ADD_TODO" as const;
 const ADD_COLLECTION = "collection/ADD_COLLECTION" as const;
