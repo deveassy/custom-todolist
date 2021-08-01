@@ -13,7 +13,7 @@ function CollectionItem({ item, index }: CItemProps) {
         to={`${path}/collection/${index}`}
         activeStyle={{ fontWeight: "bold", color: "blue" }}
       >
-        {item.name}
+        {item.title}
       </NavLink>
     </li>
   );

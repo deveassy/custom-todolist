@@ -16,10 +16,10 @@ function renderWithProviders(ui: any, { reduxState }: any = {}) {
 }
 
 describe("<TodoList />", () => {
-  const sampleTodo: Collection = {
+  const sampleTodo: ICollection = {
     id: "1",
-    order: 1,
-    name: "default",
+    title: "default",
+    createdAt: "20210722",
     data: [
       {
         id: "01",

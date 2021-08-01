@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useState } from "react";
-import { createId } from "../../utils/string";
+import { Collection } from "../../models/collection";
 
 type CFormProps = {
   visible: boolean;
@@ -17,12 +17,8 @@ const CollectionForm = forwardRef<HTMLInputElement, CFormProps>(
 
     const handleSubmit = () => {
       if (!inputValue) return;
-      const newCollection: ICollection = {
-        id: createId("custom"),
-        name: inputValue,
-        order: 0,
-        data: [],
-      };
+      const newCollection = new Collection(inputValue).data;
+      if(!newCollection) return;
       onSubmit(newCollection);
       setInputValue("");
     };

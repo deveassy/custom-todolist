@@ -1,14 +1,14 @@
-type ITodo = {
+interface Base {
   id: string;
   title: string;
   createdAt: string;
+}
+
+interface ITodo extends Base {
   done: boolean;
   flagged: boolean;
-};
+}
 
-type ICollection = {
-  id: string;
-  name: string;
-  order: number;
-  data: Todo[];
-};
+interface ICollection extends Base {
+  data: ITodo[];
+}

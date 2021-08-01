@@ -10,7 +10,7 @@ import mockTodo from "../../mocks/todo.json";
 // 5. done === false가 되면 스타일이 해제되는가
 
 describe("<TodoItem />", () => {
-  const todo: Todo = mockTodo;
+  const todo: ITodo = mockTodo;
   const onClick: () => void = jest.fn();
   const getRenderResult = (): RenderResult => {
     return render(<TodoItem todo={todo} onClick={onClick} />);
