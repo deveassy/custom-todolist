@@ -2,7 +2,7 @@ import React from "react";
 import { useKeywordSearch } from "../../hooks/useKeywordSearch";
 import TodoList from "../right-pane/TodoList";
 
-type ISectionListProps = {
+export type ISectionListProps = {
   keyword: string;
 };
 
@@ -23,7 +23,7 @@ function SectionList({ keyword }: ISectionListProps) {
           <div>
             <hr />
             <section>
-              <h2>{r.name}</h2>
+              <h2>{r.title}</h2>
               <TodoList items={r} />
             </section>
           </div>

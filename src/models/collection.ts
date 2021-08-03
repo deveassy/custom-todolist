@@ -9,6 +9,7 @@ export class Collection extends BaseInstance<ICollection> {
     this.setInstance({
       ...this.base,
       data: [],
+      createdAt: new Date().toString(),
     });
   }
 }

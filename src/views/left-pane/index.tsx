@@ -33,7 +33,7 @@ function LeftPane() {
   const handleSubmit = (newCollection: ICollection) => {
     dispatch(addCollection(newCollection));
     setVisible(false);
-    history.push(`${path}/${collections.length}`);
+    history.push(`${path}/collection/${collections.length}`);
   };
 
   /**

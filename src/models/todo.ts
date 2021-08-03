@@ -1,24 +1,17 @@
-import { createId } from "../utils/string";
+import { BaseInstance } from "./base";
 
 /**
  * 할 일 클래스
  */
 
-export class Todo {
-  private todo: ITodo;
+export class Todo extends BaseInstance<ITodo> {
   constructor(title: string) {
-    this.todo = this._createTodo(title);
-  }
-  private _createTodo = (title: string): ITodo => {
-    return {
-      id: createId("todo"),
-      title,
+    super(title);
+    this.setInstance({
+      ...this.base,
       done: false,
       flagged: false,
       createdAt: new Date().toString(),
-    };
-  };
-  get getTodo() {
-    return this.todo;
+    });
   }
 }

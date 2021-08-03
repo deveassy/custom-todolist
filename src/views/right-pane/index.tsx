@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { ReactElement, useCallback, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../modules";
@@ -7,7 +7,7 @@ import { useHistory, useParams } from "react-router-dom";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 
-function RightPane() {
+function RightPane(): ReactElement {
   const dispatch = useDispatch();
   const history = useHistory();
   // 사용자에 의해 추가되는 라우터의 파라미터를 만들어줌
@@ -41,7 +41,7 @@ function RightPane() {
    * 도출이 되지 않는 경우엔 자동으로 0번째 포인터로 연결되게 함
    */
   useEffect(() => {
-    if (isValidCid) return history.push("/todo/0");
+    if (isValidCid) history.push("/todo/0");
   }, [isValidCid, history]);
 
   return (
@@ -50,9 +50,9 @@ function RightPane() {
         <Loading />
       ) : (
         <>
-          <h1>{collection.name}</h1>
+          <h1>{collection.title}</h1>
           <TodoList items={collection} />
-          <TodoForm onSubmit={handleTodoFormSubmit} />
+          <TodoForm collection={collection} onSubmit={handleTodoFormSubmit} />
         </>
       )}
     </RightContainer>

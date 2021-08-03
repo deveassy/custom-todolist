@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import { useInputState } from "../../hooks/useInputState";
+import { ISectionListProps } from "../search/SectionList";
 
 function SearchInput() {
-  const history = useHistory();
+  const history = useHistory<ISectionListProps>();
   const { path } = useRouteMatch();
 
   /**
@@ -18,6 +19,7 @@ function SearchInput() {
    */
   useEffect(() => {
     // if (inputValue.keyword.length) history.push(`${path}/search`);
+    if (inputValue.keyword === null) return;
     history.replace(`${path}/search`, {
       keyword: inputValue.keyword,
     });

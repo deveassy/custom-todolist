@@ -46,14 +46,17 @@ export const useInputState = <T extends Record<string, string | number>>(
    */
   const clear = useCallback(
     (key: string) => {
-      try {
-        if (state[key] === undefined)
-          // 상태값에 key가 존재하지 않는 경우
-          throw new Error("key is not given instance of the state");
-        setState({ ...state, [key]: "" }); // 특정 key의 상태값의 초기화
-      } catch (error) {
-        console.error("[useInputState]", error);
-      }
+      // try {
+      //   if (state[key] === undefined)
+      //     // 상태값에 key가 존재하지 않는 경우
+      //     throw new Error("key is not given instance of the state");
+      //   setState({ ...state, [key]: "" }); // 특정 key의 상태값의 초기화
+      // } catch (error) {
+      //   console.error("[useInputState]", error);
+      // }
+      if(state[key] === undefined)
+        throw new Error("the given key is not instance of state");
+        setState({...state, [key] : ''});
     },
     [state]
   );

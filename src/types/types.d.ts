@@ -1,14 +1,14 @@
-interface Base {
+interface IBase {
   id: string;
   title: string;
   createdAt: string;
 }
 
-interface ITodo extends Base {
+interface ITodo extends IBase {
   done: boolean;
   flagged: boolean;
 }
 
-interface ICollection extends Base {
-  data: ITodo[];
+interface ICollection extends IBase {
+  data: Array<ITodo>;
 }

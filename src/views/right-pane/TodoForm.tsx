@@ -4,20 +4,23 @@ import { useInputState } from "../../hooks/useInputState";
 import { Todo } from "../../models";
 
 type FormProps = {
-  // collection: ICollection;
+  collection: ICollection;
   onSubmit: (todo: ITodo) => void;
 };
 
-function TodoForm({ onSubmit }: FormProps) {
+function TodoForm({ collection, onSubmit }: FormProps) {
   const [inputValue, setInputValue, clear] = useInputState({ todoTitle: "" });
 
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = () => {
-    if (!inputValue) return;
+    if (!inputValue.todoTitle) return;
 
     // 새로운 투두 생성
-    const newTodo = new Todo(inputValue.todoTitle).getTodo;
+    const newTodo = new Todo(inputValue.todoTitle).data;
+
+    if (!newTodo) return;
+    // 투두 추가
     onSubmit(newTodo);
     // 초기화
     clear("todoTitle");

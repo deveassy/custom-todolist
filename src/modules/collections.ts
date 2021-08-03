@@ -1,4 +1,4 @@
-import { createId } from "../utils/string";
+import { createUUID } from "../utils/string";
 
 const ADD_TODO = "collection/ADD_TODO" as const;
 const ADD_COLLECTION = "collection/ADD_COLLECTION" as const;
@@ -24,9 +24,9 @@ export const toggleCompleteTodo = (collectionId: string, todoId: string) => ({
  */
 const initialState = [
   {
-    id: createId("default"),
-    name: "default",
-    order: 0,
+    id: createUUID("default"),
+    title: "default",
+    createdAt: new Date().toString(),
     data: [] as ITodo[],
   },
 ];

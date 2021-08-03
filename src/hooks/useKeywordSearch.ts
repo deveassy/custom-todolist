@@ -4,7 +4,14 @@ import { RootState } from "../modules";
 
 const DEFAULT_VALUE: ICollection[] = [];
 
-export const useKeywordSearch = (keyword: string) => {
+/**
+ * 리덕스 스토어에서 키워드 검색을 통 해 할 일 리스트 결과 반환
+ * @param keyword 검색 키워드
+ * @returns 검색 결과
+ */
+export const useKeywordSearch = (
+  keyword: string
+): { result: ICollection[] } => {
   const [result, setResult] = useState<ICollection[]>([]);
 
   const collections = useSelector((state: RootState) => state.collections);
@@ -22,5 +29,7 @@ export const useKeywordSearch = (keyword: string) => {
       setResult(DEFAULT_VALUE);
     }
   }, [collections, keyword]);
+
+  useEffect(() => {}, [result]);
   return { result };
 };

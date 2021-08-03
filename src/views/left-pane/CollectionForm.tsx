@@ -9,18 +9,19 @@ type CFormProps = {
 const CollectionForm = forwardRef<HTMLInputElement, CFormProps>(
   (props, ref) => {
     const { visible, onSubmit } = props;
-    const [inputValue, setInputValue] = useState("");
+
+    const [title, setTitle] = useState("");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setInputValue(e.target.value);
+      setTitle(e.target.value);
     };
 
     const handleSubmit = () => {
-      if (!inputValue) return;
-      const newCollection = new Collection(inputValue).data;
-      if(!newCollection) return;
+      if (!title) return;
+      const newCollection = new Collection(title).data;
+      if (!newCollection) return;
       onSubmit(newCollection);
-      setInputValue("");
+      setTitle("");
     };
 
     /**
@@ -31,7 +32,7 @@ const CollectionForm = forwardRef<HTMLInputElement, CFormProps>(
     };
 
     useEffect(() => {
-      if (visible) setInputValue("");
+      if (visible) setTitle("");
     }, [visible]);
 
     return (
@@ -44,7 +45,7 @@ const CollectionForm = forwardRef<HTMLInputElement, CFormProps>(
         <input
           ref={ref}
           onChange={handleChange}
-          value={inputValue}
+          value={title}
           placeholder=""
           onBlur={handleBlur}
           style={{ visibility: visible ? "visible" : "hidden" }}
